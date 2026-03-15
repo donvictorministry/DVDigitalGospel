@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#5C4EAB">
+
+  <!-- Primary SEO Meta -->
+  <title>DVDigital Gospel Tract</title>
+  <meta name="description" content="The Good News of Jesus Christ — Read and share the life-changing gospel message.">
+  <meta name="keywords" content="gospel, Jesus, salvation, Bible, faith, good news, Christ">
+
+  <!-- Open Graph — WhatsApp and Facebook Optimised -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gospel.donvictoracademy.net/">
+  <meta property="og:title" content="DVDigital Gospel Tract — The Good News of Jesus Christ">
+  <meta property="og:description" content="Discover the life-changing message of Jesus Christ. Read and share the gospel in your language. One tap opens it.">
+  <meta property="og:image" content="https://i.ibb.co/Q7pfxx2t/Screenshot-20260315-182330.png/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="DVDigital Gospel Tract — The Good News of Jesus Christ">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="DVDigital Gospel Tract">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://gospel.donvictoracademy.net/">
+  <meta name="twitter:title" content="DVDigital Gospel Tract — The Good News">
+  <meta name="twitter:description" content="Discover the life-changing message of Jesus Christ. Read and share the gospel in your language.">
+  <meta name="twitter:image" content="https://i.ibb.co/Q7pfxx2t/Screenshot-20260315-182330.png/og-image.jpg">
+
+  <!-- Apple PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="DV Gospel">
+
+  <!-- Fonts and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Serif:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+  <style>
+    /* ===== MATERIAL DESIGN 3 TOKENS ===== */
+    :root {
+      --md-sys-color-primary: #5C4EAB;
+      --md-sys-color-on-primary: #FFFFFF;
+      --md-sys-color-primary-container: #E8DEF8;
+      --md-sys-color-on-primary-container: #21005D;
+      --md-sys-color-secondary: #625B71;
+      --md-sys-color-on-secondary: #FFFFFF;
+      --md-sys-color-secondary-container: #E8DEF8;
+      --md-sys-color-on-secondary-container: #1D192B;
+      --md-sys-color-surface: #FFFBFE;
+      --md-sys-color-on-surface: #1C1B1F;
+      --md-sys-color-surface-variant: #E7E0EC;
+      --md-sys-color-on-surface-variant: #49454F;
+      --md-sys-color-outline: #79747E;
+      --md-sys-color-background: #FFFBFE;
+      --md-sys-color-on-background: #1C1B1F;
+      --md-sys-color-surface-container: #F3EDF7;
+      --md-sys-color-surface-container-high: #ECE6F0;
+      --md-sys-color-surface-container-highest: #E6E0E9;
+
+      /* Gospel accent colours */
+      --gospel-gold: #C17B00;
+      --gospel-gold-container: #FFF0C5;
+      --gospel-gold-on: #5C3800;
+      --gospel-green: #1A6B3A;
+      --gospel-green-container: #C8F5D8;
+      --gospel-green-on: #0A2E18;
+
+      /* MD3 elevation using primary tint — no dark shadows */
+      --elevation-1: 0 1px 3px rgba(92,78,171,0.12), 0 1px 2px rgba(92,78,171,0.08);
+      --elevation-2: 0 2px 8px rgba(92,78,171,0.14), 0 1px 3px rgba(92,78,171,0.10);
+      --elevation-3: 0 4px 16px rgba(92,78,171,0.16), 0 2px 6px rgba(92,78,171,0.10);
+
+      /* Shape */
+      --shape-xs: 4px;
+      --shape-sm: 8px;
+      --shape-md: 12px;
+      --shape-lg: 16px;
+      --shape-xl: 28px;
+      --shape-full: 9999px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== LOADING SCREEN ===== */
+    #loading-screen {
+      position: fixed; inset: 0;
+      background: var(--md-sys-color-background);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loading-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    .loading-logo {
+      width: 80px; height: 80px;
+      background: var(--md-sys-color-primary);
+      border-radius: var(--shape-xl);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: var(--elevation-2);
+    }
+    .loading-logo .material-icons-round { font-size: 42px; color: white; }
+    .loading-title { font-size: 22px; font-weight: 600; color: var(--md-sys-color-primary); margin-bottom: 6px; text-align: center; }
+    .loading-sub { font-size: 13px; color: var(--md-sys-color-on-surface-variant); text-align: center; }
+    .linear-progress {
+      width: 200px; height: 4px;
+      background: var(--md-sys-color-primary-container);
+      border-radius: 2px; margin-top: 28px; overflow: hidden;
+    }
+    .linear-progress-bar {
+      height: 100%;
+      background: var(--md-sys-color-primary);
+      border-radius: 2px;
+      animation: lp-anim 1.6s ease-in-out infinite;
+    }
+    @keyframes lp-anim {
+      0%   { width: 0%;   margin-left: 0%; }
+      50%  { width: 65%;  margin-left: 17%; }
+      100% { width: 0%;   margin-left: 100%; }
+    }
+
+    /* ===== OFFLINE BANNER ===== */
+    #offline-banner {
+      display: none;
+      background: var(--gospel-gold-container);
+      padding: 10px 16px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--gospel-gold-on);
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    #offline-banner.show { display: flex; }
+    #offline-banner .material-icons-round { font-size: 18px; }
+
+    /* ===== TOP APP BAR ===== */
+    #top-app-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--md-sys-color-surface);
+      border-bottom: 1px solid var(--md-sys-color-surface-container);
+      height: 64px;
+      padding: 0 8px 0 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .app-bar-logo {
+      width: 40px; height: 40px;
+      border-radius: var(--shape-full);
+      background: var(--md-sys-color-primary);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-right: 10px;
+    }
+    .app-bar-logo .material-icons-round { font-size: 22px; color: white; }
+
+    .app-bar-title { flex: 1; min-width: 0; }
+    .app-bar-title h1 {
+      font-size: 18px; font-weight: 600;
+      color: var(--md-sys-color-on-surface);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .app-bar-title p { font-size: 11px; color: var(--md-sys-color-on-surface-variant); }
+
+    .icon-btn {
+      width: 40px; height: 40px;
+      border-radius: var(--shape-full);
+      border: none; background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; position: relative; overflow: hidden;
+      color: var(--md-sys-color-on-surface-variant);
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .icon-btn:hover { background: rgba(92,78,171,0.08); }
+    .icon-btn:active { background: rgba(92,78,171,0.14); }
+    .icon-btn .material-icons-round { font-size: 24px; }
+    .icon-btn[hidden] { display: none; }
+
+    /* Ripple */
+    .ripple {
+      position: absolute; border-radius: 50%;
+      background: rgba(92,78,171,0.18);
+      transform: scale(0);
+      animation: ripple-out 0.55s linear;
+      pointer-events: none;
+    }
+    @keyframes ripple-out { to { transform: scale(5); opacity: 0; } }
+
+    /* ===== MAIN ===== */
+    main { max-width: 680px; margin: 0 auto; padding-bottom: 104px; }
+
+    /* ===== HERO ===== */
+    #hero {
+      background: #8C00BF;
+      padding: 44px 24px 52px;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; top: -60%; right: -18%;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    #hero::after {
+      content: ''; position: absolute; bottom: -35%; left: -12%;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.16);
+      border-radius: var(--shape-full);
+      padding: 5px 14px 5px 8px;
+      margin-bottom: 18px;
+      position: relative; z-index: 1;
+    }
+    .hero-badge .material-icons-round { font-size: 15px; color: rgba(255,255,255,0.92); }
+    .hero-badge span { font-size: 12px; color: rgba(255,255,255,0.92); letter-spacing: 0.8px; text-transform: uppercase; }
+
+    #hero h2 {
+      font-family: 'Roboto Serif', Georgia, serif;
+      font-size: 35px; font-weight: 700;
+      color: #FFFFFF; line-height: 1.22;
+      margin-bottom: 14px;
+      position: relative; z-index: 1;
+    }
+
+    #hero .hero-desc {
+      font-size: 17px; color: rgba(255,255,255,0.87);
+      line-height: 1.65; position: relative; z-index: 1;
+    }
+
+    .hero-reach-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.14);
+      border-radius: var(--shape-full);
+      padding: 8px 16px;
+      margin-top: 20px;
+      position: relative; z-index: 1;
+    }
+    .hero-reach-pill .material-icons-round { font-size: 18px; color: rgba(255,255,255,0.9); }
+    .hero-reach-pill span { font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    .hero-actions {
+      display: flex; gap: 12px; margin-top: 24px;
+      flex-wrap: wrap; position: relative; z-index: 1;
+    }
+
+    .btn-hero-fill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px; border-radius: var(--shape-full);
+      border: none; background: #FFFFFF;
+      color: var(--md-sys-color-primary);
+      font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 600;
+      cursor: pointer; position: relative; overflow: hidden;
+      transition: box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .btn-hero-fill:hover { box-shadow: var(--elevation-2); }
+    .btn-hero-fill .material-icons-round { font-size: 18px; }
+
+    .btn-hero-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--shape-full);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.15);
+      color: #FFFFFF;
+      font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500;
+      cursor: pointer; position: relative; overflow: hidden;
+      transition: background 0.2s;
+    }
+    .btn-hero-outline:hover { background: rgba(255,255,255,0.24); }
+    .btn-hero-outline .material-icons-round { font-size: 18px; }
+
+    /* ===== INSTALL BANNER ===== */
+    #install-banner {
+      display: none;
+      margin: 12px 16px 0;
+      background: var(--gospel-green-container);
+      border-radius: var(--shape-xl);
+      padding: 16px 20px;
+      align-items: center; gap: 14px;
+    }
+    #install-banner.visible { display: flex; }
+    .install-icon .material-icons-round { font-size: 30px; color: var(--gospel-green); }
+    .install-info { flex: 1; }
+    .install-info h4 { font-size: 14px; font-weight: 600; color: var(--gospel-green-on); margin-bottom: 2px; }
+    .install-info p { font-size: 12px; color: var(--gospel-green); }
+    .btn-install-banner {
+      padding: 9px 18px; border-radius: var(--shape-full);
+      border: none; background: var(--gospel-green);
+      color: white; font-family: 'Roboto', sans-serif;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    }
+
+    /* ===== LANGUAGE BAR ===== */
+    #language-bar {
+      background: var(--md-sys-color-surface-container);
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 8px;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    #language-bar::-webkit-scrollbar { display: none; }
+    #language-bar > .material-icons-round { font-size: 18px; color: var(--md-sys-color-on-surface-variant); flex-shrink: 0; }
+
+    .lang-chip {
+      display: inline-flex; align-items: center;
+      padding: 6px 16px; border-radius: var(--shape-full);
+      border: 1px solid var(--md-sys-color-outline);
+      font-size: 13px; font-family: 'Roboto', sans-serif;
+      background: transparent; color: var(--md-sys-color-on-surface-variant);
+      cursor: pointer; white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .lang-chip.active {
+      background: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+      border-color: transparent; font-weight: 600;
+    }
+    .lang-chip:hover:not(.active) { background: var(--md-sys-color-surface-container); }
+
+    /* ===== ARTICLES SECTION ===== */
+    #articles-container { padding: 0 16px; }
+
+    .section-label {
+      font-size: 1px; font-weight: 600;
+      color: var(--md-sys-color-on-surface-variant);
+      letter-spacing: 1.2px; text-transform: uppercase;
+      padding: 28px 0 14px;
+    }
+
+    /* Article Card */
+    .article-card {
+      background: var(--md-sys-color-surface);
+      border-radius: var(--shape-xl);
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: var(--elevation-1);
+    }
+
+    .article-header {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--md-sys-color-surface-container);
+    }
+
+    .article-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: var(--shape-full);
+      background: var(--md-sys-color-primary);
+      color: white; font-size: 13px; font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .article-card h3 {
+      font-family: 'Roboto Serif', Georgia, serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--md-sys-color-on-surface);
+      line-height: 1.3; margin-bottom: 4px;
+    }
+
+    .article-subtitle-text {
+      font-size: 18px; color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .article-body { padding: 20px 24px 8px; }
+
+    .article-content p {
+      font-size: 17px; line-height: 1.85;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 18px;
+    }
+    .article-content p:last-child { margin-bottom: 0; }
+
+    /* Scripture Card */
+    .scripture-card {
+      margin: 16px 24px 24px;
+      background: var(--gospel-gold-container);
+      border-radius: var(--shape-lg);
+      padding: 18px 20px;
+      border-left: 4px solid var(--gospel-gold);
+    }
+
+    .scripture-header {
+      display: flex; align-items: center; gap: 6px;
+      margin-bottom: 12px;
+    }
+    .scripture-header .material-icons-round { font-size: 16px; color: var(--gospel-gold); }
+    .scripture-header span {
+      font-size: 12px; font-weight: 600;
+      color: var(--gospel-gold);
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    .scripture-verse {
+      font-family: 'Roboto Serif', Georgia, serif;
+      font-size: 16px; font-style: italic;
+      color: var(--gospel-gold-on); line-height: 1.75;
+      margin-bottom: 10px;
+    }
+
+    .scripture-ref {
+      font-size: 13px; font-weight: 700;
+      color: var(--gospel-gold);
+    }
+
+    /* Prayer Card */
+    #prayer-card {
+      margin: 8px 16px 16px;
+      background: linear-gradient(140deg, #EDE7F6 0%, #F3E5FF 100%);
+      border-radius: var(--shape-xl);
+      padding: 28px 24px;
+    }
+
+    #prayer-card h3 {
+      font-family: 'Roboto Serif', Georgia, serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--md-sys-color-on-primary-container);
+      margin-bottom: 16px;
+    }
+
+    .prayer-text {
+      font-family: 'Roboto Serif', Georgia, serif;
+      font-style: italic; font-size: 15px;
+      color: #2D1B69; line-height: 1.85;
+      background: rgba(255,255,255,0.58);
+      border-radius: var(--shape-lg);
+      padding: 20px 22px;
+      border-left: 3px solid var(--md-sys-color-primary-container);
+    }
+
+    /* ===== REACH STATS ===== */
+    #reach-section {
+      margin: 12px 16px;
+      background: var(--md-sys-color-surface);
+      border-radius: var(--shape-xl);
+      padding: 22px 24px;
+      box-shadow: var(--elevation-1);
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+
+    .reach-stat {
+      display: flex; align-items: center; gap: 14px; flex: 1; min-width: 130px;
+    }
+
+    .reach-stat-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--shape-lg);
+      background: var(--md-sys-color-primary-container);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .reach-stat-icon .material-icons-round { font-size: 24px; color: var(--md-sys-color-primary); }
+    .reach-stat-icon.gold { background: var(--gospel-gold-container); }
+    .reach-stat-icon.gold .material-icons-round { color: var(--gospel-gold); }
+
+    .reach-stat-info {}
+    .reach-count {
+      font-size: 28px; font-weight: 800;
+      color: var(--md-sys-color-primary); line-height: 1;
+    }
+    .reach-count.gold { color: var(--gospel-gold); }
+    .reach-stat-label { font-size: 12px; color: var(--md-sys-color-on-surface-variant); margin-top: 3px; }
+
+    /* ===== CTA SECTION ===== */
+    #cta-section {
+      margin: 12px 16px 8px;
+      background: var(--md-sys-color-surface);
+      border-radius: var(--shape-xl);
+      padding: 24px;
+      box-shadow: var(--elevation-1);
+    }
+
+    #cta-section .cta-heading { font-size: 16px; font-weight: 600; color: var(--md-sys-color-on-surface); margin-bottom: 4px; }
+    #cta-section .cta-sub { font-size: 13px; color: var(--md-sys-color-on-surface-variant); margin-bottom: 22px; }
+
+    .cta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+    .cta-btn {
+      display: flex; flex-direction: column; align-items: center;
+      text-decoration: none; cursor: pointer;
+      padding: 10px 4px;
+      border-radius: var(--shape-lg); border: none;
+      background: transparent;
+      transition: background 0.2s, transform 0.15s;
+      font-family: 'Roboto', sans-serif;
+      position: relative; overflow: hidden;
+    }
+    .cta-btn:hover { background: var(--md-sys-color-surface-container); transform: translateY(-1px); }
+    .cta-btn:active { transform: scale(0.94); }
+
+    .cta-icon-circle {
+      width: 54px; height: 54px;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--elevation-1);
+    }
+    .cta-icon-circle .material-icons-round { font-size: 27px; color: white; }
+    .cta-icon-circle svg { width: 27px; height: 27px; fill: white; }
+
+    .cta-btn-email .cta-icon-circle   { background: #1565C0; }
+    .cta-btn-phone .cta-icon-circle   { background: #2E7D32; }
+    .cta-btn-wa .cta-icon-circle      { background: #25D366; }
+    .cta-btn-fb .cta-icon-circle      { background: #1877F2; }
+
+    /* ===== REACTION BAR ===== */
+    #reaction-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--md-sys-color-surface);
+      border-top: 1px solid var(--md-sys-color-surface-container);
+      padding: 10px 8px calc(10px + env(safe-area-inset-bottom, 0px));
+      z-index: 100;
+    }
+
+    .reaction-prompt {
+      font-size: 11px; color: var(--md-sys-color-on-surface-variant);
+      text-align: center; margin-bottom: 8px; letter-spacing: 0.2px;
+    }
+
+    .reactions-row { display: flex; justify-content: space-around; }
+
+    .rxn-btn {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 2px;
+      padding: 7px 14px;
+      border-radius: var(--shape-lg); border: none;
+      background: transparent; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      position: relative; overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+      min-width: 62px;
+    }
+    .rxn-btn:hover { background: var(--md-sys-color-surface-container); }
+    .rxn-btn:active { transform: scale(0.88); }
+
+    .rxn-btn.reacted { background: var(--md-sys-color-primary-container); }
+    .rxn-btn.reacted .rxn-icon { color: var(--md-sys-color-primary); }
+    .rxn-btn.reacted .rxn-count { color: var(--md-sys-color-primary); font-weight: 700; }
+    .rxn-btn.reacted .rxn-label { color: var(--md-sys-color-primary); }
+
+    .rxn-btn[data-type="saved"].reacted { background: var(--gospel-gold-container); }
+    .rxn-btn[data-type="saved"].reacted .rxn-icon  { color: var(--gospel-gold); }
+    .rxn-btn[data-type="saved"].reacted .rxn-count { color: var(--gospel-gold); }
+    .rxn-btn[data-type="saved"].reacted .rxn-label { color: var(--gospel-gold); }
+
+    .rxn-icon .material-icons-round { font-size: 23px; color: var(--md-sys-color-on-surface-variant); }
+    .rxn-count { font-size: 11px; color: var(--md-sys-color-on-surface-variant); }
+    .rxn-label { font-size: 10px; color: var(--md-sys-color-on-surface-variant); font-weight: 500; }
+
+    @keyframes pop-icon {
+      0%   { transform: scale(1); }
+      45%  { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+    .rxn-btn.popping .rxn-icon { animation: pop-icon 0.28s ease; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 32px 24px 20px;
+      text-align: center;
+    }
+    footer .footer-bar {
+      width: 44px; height: 3px;
+      background: var(--md-sys-color-primary-container);
+      border-radius: 2px; margin: 0 auto 14px;
+    }
+    footer p { font-size: 14px; color: var(--md-sys-color-on-surface-variant); line-height: 1.7; }
+    footer .version { font-size: 12px; color: var(--md-sys-color-outline); margin-top: 10px; }
+
+    /* ===== SNACKBAR ===== */
+    #snackbar {
+      position: fixed; bottom: 92px;
+      left: 50%; transform: translateX(-50%) translateY(16px);
+      background: var(--md-sys-color-surface-container-highest);
+      color: var(--md-sys-color-on-surface);
+      padding: 13px 22px; border-radius: var(--shape-sm);
+      font-size: 14px; z-index: 1100;
+      opacity: 0; transition: opacity 0.3s, transform 0.3s;
+      white-space: nowrap; max-width: calc(100vw - 40px);
+      box-shadow: var(--elevation-2);
+    }
+    #snackbar.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ===== SKELETON ===== */
+    .skeleton {
+      background: linear-gradient(90deg, #EDE7F6 25%, #E8DEF8 50%, #EDE7F6 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.6s infinite;
+      border-radius: var(--shape-sm);
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .sk-line { height: 13px; margin-bottom: 10px; }
+    .sk-line.tall { height: 22px; }
+    .sk-line.short { width: 55%; }
+    .sk-line.med { width: 78%; }
+    .sk-card {
+      background: var(--md-sys-color-surface);
+      border-radius: var(--shape-xl);
+      padding: 26px; margin-bottom: 16px;
+      box-shadow: var(--elevation-1);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 380px) {
+      #hero h2 { font-size: 27px; }
+      .cta-icon-circle { width: 46px; height: 46px; }
+      .cta-icon-circle .material-icons-round { font-size: 22px; }
+    }
+    @media (min-width: 600px) {
+      main { padding: 0 0 104px; }
+      #articles-container { padding: 0; }
+    }
+    @media print {
+      #top-app-bar, #reaction-bar, #cta-section, #install-banner { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-logo">
+      <span class="material-icons-round">auto_stories</span>
+    </div>
+    <div class="loading-title">DVDigital Gospel Tract</div>
+    <div class="loading-sub">Loading the Good News...</div>
+    <div class="linear-progress">
+      <div class="linear-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- Offline Notice -->
+  <div id="offline-banner">
+    <span class="material-icons-round">wifi_off</span>
+    You are offline. Showing saved content.
+  </div>
+
+  <!-- Top App Bar -->
+  <header id="top-app-bar">
+    <div class="app-bar-logo">
+      <span class="material-icons-round">auto_stories</span>
+    </div>
+    <div class="app-bar-title">
+      <h1 id="bar-title">DVDigital Gospel Tract</h1>
+      <p id="bar-sub">The Good News of Jesus Christ</p>
+    </div>
+    <button class="icon-btn" id="btn-lang" title="Change Language" aria-label="Change Language">
+      <span class="material-icons-round">translate</span>
+    </button>
+    <button class="icon-btn" id="btn-share" title="Share App" aria-label="Share this gospel">
+      <span class="material-icons-round">share</span>
+    </button>
+    <button class="icon-btn" id="btn-install" title="Install App" aria-label="Install app" hidden>
+      <span class="material-icons-round">install_mobile</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero">
+      <div class="hero-badge">
+        <span class="material-icons-round">verified</span>
+        <span>The Gospel of Jesus Christ</span>
+      </div>
+      <h2>Good News for Every Person</h2>
+      <p class="hero-desc">Read, believe, and share the life-changing message of salvation — available in your language.</p>
+
+      <div class="hero-reach-pill">
+        <span class="material-icons-round">public</span>
+        <span id="hero-reach-text">Loading reach...</span>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn-hero-fill" onclick="document.getElementById('articles-container').scrollIntoView({behavior:'smooth'})">
+          <span class="material-icons-round">menu_book</span>
+          Read Now
+        </button>
+        <button class="btn-hero-outline" id="btn-share-hero">
+          <span class="material-icons-round">share</span>
+          Share Gospel
+        </button>
+      </div>
+    </section>
+
+    <!-- Install Banner -->
+    <div id="install-banner">
+      <div class="install-icon">
+        <span class="material-icons-round">download_for_offline</span>
+      </div>
+      <div class="install-info">
+        <h4>Install this App</h4>
+        <p>One-tap gospel access. Works offline.</p>
+      </div>
+      <button class="btn-install-banner" id="btn-install-banner">Install</button>
+    </div>
+
+    <!-- Language Bar -->
+    <div id="language-bar">
+      <span class="material-icons-round">translate</span>
+      <div id="lang-chips"></div>
+    </div>
+
+    <!-- Articles -->
+    <div id="articles-container">
+      <div class="section-label">The Gospel Message</div>
+      <div id="articles-list">
+        <!-- Skeleton Loading -->
+        <div class="sk-card" id="sk1">
+          <div class="sk-line tall skeleton"></div>
+          <div class="sk-line short skeleton" style="margin-bottom:20px;"></div>
+          <div class="sk-line skeleton"></div>
+          <div class="sk-line med skeleton"></div>
+          <div class="sk-line skeleton"></div>
+        </div>
+        <div class="sk-card" id="sk2">
+          <div class="sk-line tall skeleton"></div>
+          <div class="sk-line short skeleton" style="margin-bottom:20px;"></div>
+          <div class="sk-line skeleton"></div>
+          <div class="sk-line med skeleton"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prayer Card -->
+    <div id="prayer-card">
+      <h3>A Prayer of Commitment</h3>
+      <div class="prayer-text">
+        Lord Jesus, I acknowledge that I am a sinner in need of a Saviour. I believe You died for my sins and rose again from the dead. I turn from my sins and invite You into my life as my Lord and Saviour. Thank You for forgiving me and giving me eternal life. In Your name I pray. Amen.
+      </div>
+    </div>
+
+    <!-- Reach Stats -->
+    <div id="reach-section">
+      <div class="reach-stat">
+        <div class="reach-stat-icon">
+          <span class="material-icons-round">travel_explore</span>
+        </div>
+        <div class="reach-stat-info">
+          <div class="reach-count" id="views-count">0</div>
+          <div class="reach-stat-label">Gospel Views</div>
+        </div>
+      </div>
+      <div class="reach-stat">
+        <div class="reach-stat-icon gold">
+          <span class="material-icons-round">favorite</span>
+        </div>
+        <div class="reach-stat-info">
+          <div class="reach-count gold" id="reactions-count">0</div>
+          <div class="reach-stat-label">Reactions</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div id="cta-section">
+      <div class="cta-heading">Connect With Us</div>
+      <div class="cta-sub">May our digital technology be a source of blessing in your life. We are here to listen, whether you have questions, ideas, or a heart for partnership. If you are seeking personal prayer or counseling, please know that you are not alone. We would be honored to walk alongside you. Connect with us through any of the available channels below.</div>
+      <div class="cta-grid">
+        <!-- Email -->
+        <a href="/cdn-cgi/l/email-protection#176e78626557727a767e7b3974787a" class="cta-btn cta-btn-email" id="cta-email" aria-label="Send Email">
+          <div class="cta-icon-circle">
+            <span class="material-icons-round">email</span>
+          </div>
+        </a>
+        <!-- Phone -->
+        <a href="tel:+2347035794649" class="cta-btn cta-btn-phone" id="cta-phone" aria-label="Call Us">
+          <div class="cta-icon-circle">
+            <span class="material-icons-round">phone</span>
+          </div>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/2348086590253" class="cta-btn cta-btn-wa" id="cta-wa" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <div class="cta-icon-circle">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+          </div>
+        </a>
+        <!-- Facebook -->
+        <a href="https://facebook.com/Rev.DonVictor" class="cta-btn cta-btn-fb" id="cta-fb" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <div class="cta-icon-circle">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-bar"></div>
+      <p id="footer-text">Sharing the love of Christ with the world</p>
+      <p class="version">DVDigital Gospel Tract v1.0</p>
+    </footer>
+  </main>
+
+  <!-- Reaction Bar -->
+  <div id="reaction-bar">
+    <div class="reaction-prompt">How does this message touch your heart?</div>
+    <div class="reactions-row">
+      <button class="rxn-btn" data-type="amen" aria-label="Amen">
+        <div class="rxn-icon"><span class="material-icons-round">check_circle</span></div>
+        <div class="rxn-count" data-count="amen">0</div>
+        <div class="rxn-label">Amen</div>
+      </button>
+      <button class="rxn-btn" data-type="blessed" aria-label="Blessed">
+        <div class="rxn-icon"><span class="material-icons-round">volunteer_activism</span></div>
+        <div class="rxn-count" data-count="blessed">0</div>
+        <div class="rxn-label">Blessed</div>
+      </button>
+      <button class="rxn-btn" data-type="inspired" aria-label="Inspired">
+        <div class="rxn-icon"><span class="material-icons-round">auto_awesome</span></div>
+        <div class="rxn-count" data-count="inspired">0</div>
+        <div class="rxn-label">Inspired</div>
+      </button>
+      <button class="rxn-btn" data-type="saved" aria-label="Saved Today">
+        <div class="rxn-icon"><span class="material-icons-round">how_to_reg</span></div>
+        <div class="rxn-count" data-count="saved">0</div>
+        <div class="rxn-label">Saved</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Snackbar -->
+  <div id="snackbar" role="status" aria-live="polite"></div>
+
+  <!-- Language Modal -->
+  <div id="lang-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:200;align-items:flex-end;justify-content:center;">
+    <div style="background:var(--md-sys-color-surface);border-radius:28px 28px 0 0;padding:24px;width:100%;max-width:520px;max-height:60vh;overflow-y:auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <span style="font-size:18px;font-weight:600;color:var(--md-sys-color-on-surface);">Select Language</span>
+        <button onclick="closeLangModal()" style="background:none;border:none;cursor:pointer;padding:4px;">
+          <span class="material-icons-round" style="font-size:24px;color:var(--md-sys-color-on-surface-variant);">close</span>
+        </button>
+      </div>
+      <div id="lang-modal-list"></div>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ================================================================
+  //  CONFIG — REPLACE YOUR VALUES HERE
+  // ================================================================
+  const CONFIG = {
+    GAS_URL:          'https://script.google.com/macros/s/AKfycbylBPzaR6-j3LqZ8ncPOAAfIaGiG32x1Q-zwLl4yM3Tg-CHI7ZnDg5UA3YW-iqgFwbM/exec',   // Deploy GAS, paste URL here
+    contactEmail:     'donvictorministry@email.com',
+    contactPhone:     '+2347035794649',
+    contactWhatsApp:  '2348086590253',
+    facebookPage:     'https://facebook.com/Rev.DonVictor',
+    shareTitle:       'DVDigital Gospel Tract — The Good News of Jesus Christ',
+    shareText:        'Read the life-changing gospel message. One tap opens it:'
+  };
+
+  // ================================================================
+  //  SESSION + STATE
+  // ================================================================
+  const SESSION_ID = (() => {
+    let s = sessionStorage.getItem('dv_sid');
+    if (!s) { s = Date.now().toString(36) + Math.random().toString(36).slice(2); sessionStorage.setItem('dv_sid', s); }
+    return s;
+  })();
+
+  const State = {
+    articles:    [],
+    allLangs:    [],
+    currentLang: (navigator.language || 'en').slice(0, 2),
+    stats:       { totalViews: 0, totalReactions: 0, reactionBreakdown: {} },
+    settings:    {},
+    myReactions: JSON.parse(localStorage.getItem('dv_rxn') || '{}'),
+    deferredInstall: null
+  };
+
+  // ================================================================
+  //  DEFAULT ARTICLES (Shown offline or before GAS loads)
+  // ================================================================
+  const DEFAULT_ARTICLES = [
+    {
+      id: 'default-1', order: 1, language: 'en', status: 'published',
+      title: 'God Loves You',
+      subtitle: 'The Greatest Love Story Ever Told',
+      content: `For God so loved the world that He gave His one and only Son, that whoever believes in Him shall not perish but have eternal life. This is not a story of religion. This is a story of relationship — a Father reaching out to His children with arms wide open, offering forgiveness, restoration, and eternal life.
+
+You were created with purpose and worth. Before you were formed in the womb, God knew you and loved you. His love is not based on your performance, your past, or your potential — it is rooted in His unchanging nature. He is love itself.
+
+No matter where you are in life, no matter what you have done or left undone, the love of God is reaching out to you right now through these very words. He has not given up on you. He never will.`,
+      scripture: 'For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.',
+      scriptureRef: 'John 3:16'
+    },
+    {
+      id: 'default-2', order: 2, language: 'en', status: 'published',
+      title: 'The Problem We All Face',
+      subtitle: 'Understanding Why We Need a Saviour',
+      content: `Every human being born into this world carries within them a deep awareness that something is wrong. We have all fallen short of the perfect standard of God. This is what the Bible calls sin — not merely the wrong things we do, but a fundamental separation from God that began at the dawn of human history.
+
+Sin brings consequences: broken relationships, inner emptiness, and ultimately, spiritual death — eternal separation from God. No amount of good works, religious effort, or moral self-improvement can bridge this gap. The debt we owe is one that we cannot pay by ourselves.
+
+But this is not where the story ends. God, in His infinite love and wisdom, made a way where there seemed to be no way. He looked upon the wreckage of human sin and chose to act — not with judgment alone, but with redeeming love.`,
+      scripture: 'For all have sinned and fall short of the glory of God.',
+      scriptureRef: 'Romans 3:23'
+    },
+    {
+      id: 'default-3', order: 3, language: 'en', status: 'published',
+      title: 'Jesus: The Only Way',
+      subtitle: 'The Bridge Between Humanity and God',
+      content: `Two thousand years ago, God entered human history in the person of Jesus Christ. Born of a virgin in Bethlehem, He lived a perfect and sinless life, performed miracles of healing and resurrection, and taught with an authority the world had never seen. He was not merely a great teacher or a moral philosopher — He was and is the eternal Son of God.
+
+Jesus willingly walked to the cross and paid the full penalty for the sins of every human being. He died in our place, bearing our guilt and shame. Three days later, He rose bodily from the dead — conquering sin, death, and the power of the enemy forever. His resurrection is the cornerstone of the Christian faith.
+
+Through His death and resurrection, the way back to God has been opened for all people. Not through religion or ritual. Not through human effort or merit. But through a living, personal relationship with the risen Lord Jesus Christ.`,
+      scripture: 'Jesus answered, "I am the way and the truth and the life. No one comes to the Father except through me."',
+      scriptureRef: 'John 14:6'
+    },
+    {
+      id: 'default-4', order: 4, language: 'en', status: 'published',
+      title: 'Your Response',
+      subtitle: 'What Will You Do With Jesus?',
+      content: `The gospel is not merely information to be received — it is an invitation to be accepted. God is calling you, right now, to turn from your old way of life and to place your full trust in Jesus Christ as your Lord and Saviour.
+
+Repentance means turning away from sin and self-rule, choosing instead to walk in the ways of God. Faith means trusting completely in what Jesus has done for you on the cross — not in anything you can do for yourself.
+
+If you are ready to take this step, you can pray sincerely from your heart: "Lord Jesus, I acknowledge that I am a sinner in need of a Saviour. I believe You died for my sins and rose again. I turn from my sins and invite You into my life as my Lord and Saviour. Thank You for forgiving me and giving me eternal life. Amen."
+
+If you prayed that prayer sincerely, the Bible declares that you have been born again and have become a child of God. Welcome to the family of faith. Connect with a local Bible-believing church, read your Bible daily beginning with the Gospel of John, and share this wonderful good news with others.`,
+      scripture: 'If you declare with your mouth, "Jesus is Lord," and believe in your heart that God raised him from the dead, you will be saved.',
+      scriptureRef: 'Romans 10:9'
+    }
+  ];
+
+  const LANGUAGE_NAMES = {
+    en: 'English', fr: 'Francais', pt: 'Portugues', es: 'Espanol',
+    sw: 'Kiswahili', ar: 'Arabic', zh: 'Chinese', de: 'Deutsch',
+    hi: 'Hindi', yo: 'Yoruba', ig: 'Igbo', ha: 'Hausa'
+  };
+
+  // ================================================================
+  //  MANIFEST (Inline blob injection)
+  // ================================================================
+  function injectManifest() {
+    const icon192 = generateAppIcon(192);
+    const icon512 = generateAppIcon(512);
+    const manifest = {
+      name: 'DVDigital Gospel Tract',
+      short_name: 'DV Gospel',
+      description: 'The Good News of Jesus Christ',
+      start_url: './',
+      display: 'standalone',
+      orientation: 'portrait',
+      background_color: '#FFFBFE',
+      theme_color: '#5C4EAB',
+      icons: [
+        { src: icon192, sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+        { src: icon512, sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
+      ],
+      categories: ['education', 'lifestyle'],
+      lang: 'en'
+    };
+    const blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+    const url  = URL.createObjectURL(blob);
+    const link = document.createElement('link');
+    link.rel   = 'manifest';
+    link.href  = url;
+    document.head.appendChild(link);
+  }
+
+  function generateAppIcon(size) {
+    const c   = document.createElement('canvas');
+    c.width   = size; c.height = size;
+    const ctx = c.getContext('2d');
+    const r   = size * 0.22;
+    // Purple background with rounded corners
+    ctx.fillStyle = '#5C4EAB';
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.lineTo(size - r, 0);
+    ctx.quadraticCurveTo(size, 0, size, r);
+    ctx.lineTo(size, size - r); ctx.quadraticCurveTo(size, size, size - r, size);
+    ctx.lineTo(r, size); ctx.quadraticCurveTo(0, size, 0, size - r);
+    ctx.lineTo(0, r); ctx.quadraticCurveTo(0, 0, r, 0);
+    ctx.closePath(); ctx.fill();
+    // White cross
+    const cx = size / 2, cy = size / 2;
+    const cw = size * 0.10, ch = size * 0.50;
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(cx - cw / 2, cy - ch / 2, cw, ch);
+    ctx.fillRect(cx - ch * 0.42, cy - cw / 2, ch * 0.84, cw);
+    return c.toDataURL('image/png');
+  }
+
+  // ================================================================
+  //  SERVICE WORKER (Inline blob registration)
+  // ================================================================
+  function registerServiceWorker() {
+    if (!('serviceWorker' in navigator)) return;
+    const swCode = `
+      const CACHE = 'dvdgt-v2';
+      const ASSETS = ['./'];
+      self.addEventListener('install', e => {
+        e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+        self.skipWaiting();
+      });
+      self.addEventListener('activate', e => {
+        e.waitUntil(
+          caches.keys().then(keys =>
+            Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+          )
+        );
+        self.clients.claim();
+      });
+      self.addEventListener('fetch', e => {
+        if (e.request.url.includes('script.google.com') ||
+            e.request.url.includes('fonts.googleapis.com') ||
+            e.request.url.includes('fonts.gstatic.com')) {
+          e.respondWith(
+            fetch(e.request).catch(() =>
+              new Response('', { status: 503 })
+            )
+          );
+          return;
+        }
+        e.respondWith(
+          caches.match(e.request).then(cached => {
+            if (cached) return cached;
+            return fetch(e.request).then(res => {
+              const clone = res.clone();
+              caches.open(CACHE).then(c => c.put(e.request, clone));
+              return res;
+            });
+          }).catch(() => caches.match('./'))
+        );
+      });
+    `;
+    const blob = new Blob([swCode], { type: 'application/javascript' });
+    const url  = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(url, { scope: './' })
+      .catch(err => console.warn('SW registration:', err));
+  }
+
+  // ================================================================
+  //  GAS API CALLS
+  // ================================================================
+  async function gasGet(action, extraParams = '') {
+    if (!CONFIG.GAS_URL || CONFIG.GAS_URL === 'YOUR_GAS_WEBAPP_URL_HERE') return null;
+    try {
+      const res = await fetch(`${CONFIG.GAS_URL}?action=${action}${extraParams}`);
+      return res.json();
+    } catch { return null; }
+  }
+
+  async function gasPost(body) {
+    if (!CONFIG.GAS_URL || CONFIG.GAS_URL === 'YOUR_GAS_WEBAPP_URL_HERE') return null;
+    try {
+      const res = await fetch(CONFIG.GAS_URL, { method: 'POST', body: JSON.stringify(body) });
+      return res.json();
+    } catch { return null; }
+  }
+
+  // ================================================================
+  //  COUNT-UP ANIMATION
+  // ================================================================
+  function animateCount(el, target, duration = 1200) {
+    const start = performance.now();
+    const from  = parseInt(el.textContent) || 0;
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      el.textContent = Math.floor(from + (target - from) * p);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // ================================================================
+  //  RENDER ARTICLES
+  // ================================================================
+  function renderArticles(articles) {
+    const container = document.getElementById('articles-list');
+    container.innerHTML = '';
+
+    if (!articles || articles.length === 0) {
+      container.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;color:var(--md-sys-color-on-surface-variant);">
+          <span class="material-icons-round" style="font-size:64px;opacity:0.3;display:block;margin-bottom:16px;">article</span>
+          <p>No gospel articles found for this language.<br>Showing content in English.</p>
+        </div>`;
+      return;
+    }
+
+    articles.forEach((article, idx) => {
+      const card = document.createElement('div');
+      card.className = 'article-card';
+
+      const paragraphs = (article.content || '')
+        .split(/\n\n+/)
+        .filter(p => p.trim())
+        .map(p => `<p>${p.trim()}</p>`)
+        .join('');
+
+      card.innerHTML = `
+        <div class="article-header">
+          <div class="article-num">${idx + 1}</div>
+          <h3>${article.title || ''}</h3>
+          ${article.subtitle ? `<div class="article-subtitle-text">${article.subtitle}</div>` : ''}
+        </div>
+        <div class="article-body">
+          <div class="article-content">${paragraphs}</div>
+        </div>
+        ${article.scripture ? `
+          <div class="scripture-card">
+            <div class="scripture-header">
+              <span class="material-icons-round">menu_book</span>
+              <span>Scripture</span>
+            </div>
+            <div class="scripture-verse">${article.scripture}</div>
+            <div class="scripture-ref">${article.scriptureRef || ''}</div>
+          </div>` : ''}
+      `;
+
+      container.appendChild(card);
+      addRipple(card);
+    });
+  }
+
+  // ================================================================
+  //  LANGUAGE BAR
+  // ================================================================
+  function buildLanguageBar(articles) {
+    const langs = [...new Set(articles.map(a => a.language || 'en'))];
+    State.allLangs = langs;
+    const chips = document.getElementById('lang-chips');
+    chips.innerHTML = '';
+    langs.forEach(lang => {
+      const chip = document.createElement('button');
+      chip.className = 'lang-chip' + (lang === State.currentLang ? ' active' : '');
+      chip.textContent = LANGUAGE_NAMES[lang] || lang.toUpperCase();
+      chip.addEventListener('click', () => switchLanguage(lang, articles));
+      chips.appendChild(chip);
+    });
+
+    // Modal list
+    const modalList = document.getElementById('lang-modal-list');
+    modalList.innerHTML = '';
+    langs.forEach(lang => {
+      const btn = document.createElement('button');
+      btn.style.cssText = 'display:flex;align-items:center;gap:16px;width:100%;padding:14px 0;border:none;background:none;cursor:pointer;font-family:Roboto,sans-serif;font-size:16px;color:var(--md-sys-color-on-surface);border-bottom:1px solid var(--md-sys-color-surface-container);';
+      btn.innerHTML = `<span class="material-icons-round" style="color:var(--md-sys-color-primary);">translate</span>${LANGUAGE_NAMES[lang] || lang.toUpperCase()}`;
+      btn.addEventListener('click', () => { switchLanguage(lang, articles); closeLangModal(); });
+      modalList.appendChild(btn);
+    });
+  }
+
+  function switchLanguage(lang, articles) {
+    State.currentLang = lang;
+    document.getElementById('lang-chips').querySelectorAll('.lang-chip').forEach(c => {
+      c.classList.toggle('active', c.textContent === (LANGUAGE_NAMES[lang] || lang.toUpperCase()));
+    });
+    const filtered = articles.filter(a => (a.language || 'en') === lang);
+    renderArticles(filtered.length ? filtered : articles.filter(a => (a.language || 'en') === 'en'));
+  }
+
+  // ================================================================
+  //  TRACK VIEW
+  // ================================================================
+  async function trackView() {
+    if (sessionStorage.getItem('dv_tracked')) return;
+    sessionStorage.setItem('dv_tracked', '1');
+    await gasPost({
+      action:    'trackView',
+      sessionId: SESSION_ID,
+      language:  State.currentLang,
+      userAgent: navigator.userAgent.slice(0, 200),
+      referrer:  document.referrer.slice(0, 200)
+    });
+  }
+
+  // ================================================================
+  //  REACTIONS
+  // ================================================================
+  function initReactions() {
+    document.querySelectorAll('.rxn-btn').forEach(btn => {
+      const type = btn.dataset.type;
+      if (State.myReactions[type]) btn.classList.add('reacted');
+      btn.addEventListener('click', () => handleReaction(btn, type));
+    });
+  }
+
+  async function handleReaction(btn, type) {
+    const wasReacted = State.myReactions[type];
+
+    btn.classList.toggle('reacted', !wasReacted);
+    btn.classList.add('popping');
+    setTimeout(() => btn.classList.remove('popping'), 300);
+
+    if (wasReacted) {
+      delete State.myReactions[type];
+    } else {
+      State.myReactions[type] = true;
+      showSnackbar('Thank you for responding to the Gospel');
+      await gasPost({ action: 'addReaction', type, sessionId: SESSION_ID, articleId: 'main' });
+    }
+
+    localStorage.setItem('dv_rxn', JSON.stringify(State.myReactions));
+    updateReactionCounts();
+  }
+
+  function updateReactionCounts() {
+    const bd = State.stats.reactionBreakdown || {};
+    document.querySelectorAll('.rxn-btn').forEach(btn => {
+      const type = btn.dataset.type;
+      btn.querySelector('.rxn-count').textContent = bd[type] || 0;
+    });
+  }
+
+  // ================================================================
+  //  SHARE
+  // ================================================================
+  async function handleShare() {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: CONFIG.shareTitle,
+          text:  CONFIG.shareText,
+          url:   window.location.href
+        });
+        showSnackbar('Thank you for sharing the Gospel');
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        showSnackbar('Link copied — share it with someone today');
+      }
+    } catch (err) {
+      if (err.name !== 'AbortError') {
+        try { await navigator.clipboard.writeText(window.location.href); showSnackbar('Link copied'); }
+        catch { showSnackbar('Share: ' + window.location.href); }
+      }
+    }
+  }
+
+  // ================================================================
+  //  INSTALL PROMPT
+  // ================================================================
+  function initInstallPrompt() {
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      State.deferredInstall = e;
+      document.getElementById('btn-install').hidden = false;
+      document.getElementById('install-banner').classList.add('visible');
+    });
+
+    const doInstall = async () => {
+      if (!State.deferredInstall) { showSnackbar('Open in Chrome or Edge to install'); return; }
+      State.deferredInstall.prompt();
+      const { outcome } = await State.deferredInstall.userChoice;
+      if (outcome === 'accepted') {
+        document.getElementById('install-banner').classList.remove('visible');
+        document.getElementById('btn-install').hidden = true;
+        showSnackbar('App installed — spread the Good News offline');
+      }
+      State.deferredInstall = null;
+    };
+
+    document.getElementById('btn-install').addEventListener('click', doInstall);
+    document.getElementById('btn-install-banner').addEventListener('click', doInstall);
+
+    window.addEventListener('appinstalled', () => {
+      document.getElementById('install-banner').classList.remove('visible');
+      document.getElementById('btn-install').hidden = true;
+    });
+  }
+
+  // ================================================================
+  //  CTA BUTTONS — Update from settings
+  // ================================================================
+  function updateCTAButtons(settings) {
+    const email = settings.contactEmail || CONFIG.contactEmail;
+    const phone = settings.contactPhone || CONFIG.contactPhone;
+    const wa    = settings.contactWhatsApp || CONFIG.contactWhatsApp;
+    const fb    = settings.facebookPage || CONFIG.facebookPage;
+
+    document.getElementById('cta-email').href = `mailto:${email}`;
+    document.getElementById('cta-phone').href = `tel:${phone}`;
+    document.getElementById('cta-wa').href    = `https://wa.me/${wa.replace(/\D/g, '')}`;
+    document.getElementById('cta-fb').href    = fb;
+  }
+
+  // ================================================================
+  //  RIPPLE EFFECT
+  // ================================================================
+  function addRipple(el) {
+    el.style.position = 'relative';
+    el.style.overflow = 'hidden';
+    el.addEventListener('pointerdown', function(e) {
+      const r = document.createElement('span');
+      r.className = 'ripple';
+      const rect = el.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2;
+      r.style.width = r.style.height = size + 'px';
+      r.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      r.style.top  = (e.clientY - rect.top  - size / 2) + 'px';
+      el.appendChild(r);
+      r.addEventListener('animationend', () => r.remove());
+    });
+  }
+
+  // ================================================================
+  //  SNACKBAR
+  // ================================================================
+  let snackTimer;
+  function showSnackbar(msg) {
+    const sb = document.getElementById('snackbar');
+    sb.textContent = msg;
+    sb.classList.add('show');
+    clearTimeout(snackTimer);
+    snackTimer = setTimeout(() => sb.classList.remove('show'), 3200);
+  }
+
+  // ================================================================
+  //  LANGUAGE MODAL
+  // ================================================================
+  function openLangModal()  { const m = document.getElementById('lang-modal'); m.style.display = 'flex'; }
+  function closeLangModal() { document.getElementById('lang-modal').style.display = 'none'; }
+
+  // ================================================================
+  //  ONLINE / OFFLINE
+  // ================================================================
+  window.addEventListener('offline', () => document.getElementById('offline-banner').classList.add('show'));
+  window.addEventListener('online',  () => document.getElementById('offline-banner').classList.remove('show'));
+  if (!navigator.onLine) document.getElementById('offline-banner').classList.add('show');
+
+  // ================================================================
+  //  MAIN INIT
+  // ================================================================
+  document.addEventListener('DOMContentLoaded', async () => {
+    injectManifest();
+    registerServiceWorker();
+    initInstallPrompt();
+
+    // Wire share buttons
+    document.getElementById('btn-share').addEventListener('click', handleShare);
+    document.getElementById('btn-share-hero').addEventListener('click', handleShare);
+    document.getElementById('btn-lang').addEventListener('click', openLangModal);
+    document.getElementById('lang-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeLangModal(); });
+
+    // Load ripple on CTA buttons
+    document.querySelectorAll('.cta-btn').forEach(addRipple);
+
+    // Attempt to load from GAS
+    let articles = DEFAULT_ARTICLES;
+    let settings = {};
+    let stats    = { totalViews: 0, totalReactions: 0, reactionBreakdown: {} };
+
+    const gasActive = CONFIG.GAS_URL && CONFIG.GAS_URL !== 'YOUR_GAS_WEBAPP_URL_HERE';
+
+    if (gasActive) {
+      try {
+        const [artData, settData, statData] = await Promise.all([
+          gasGet('getArticles', `&lang=${State.currentLang}`),
+          gasGet('getSettings'),
+          gasGet('getStats')
+        ]);
+
+        if (artData && artData.articles && artData.articles.length) {
+          articles = artData.articles;
+        }
+        if (settData) settings = settData;
+        if (statData) stats    = statData;
+      } catch (e) { /* fallback already set */ }
+    }
+
+    State.articles = articles;
+    State.stats    = stats;
+    State.settings = settings;
+
+    // Patch settings into page
+    if (settings.tractTitle)    { document.getElementById('bar-title').textContent  = settings.tractTitle; document.title = settings.tractTitle; }
+    if (settings.tractSubtitle) document.getElementById('bar-sub').textContent       = settings.tractSubtitle;
+    if (settings.footerText)    document.getElementById('footer-text').textContent   = settings.footerText;
+
+    updateCTAButtons(settings);
+
+    // Render language bar
+    buildLanguageBar(articles);
+
+    // Render articles for browser language
+    const langArticles = articles.filter(a => (a.language || 'en') === State.currentLang);
+    renderArticles(langArticles.length ? langArticles : articles.filter(a => (a.language || 'en') === 'en'));
+
+    // Stats
+    const vc = document.getElementById('views-count');
+    const rc = document.getElementById('reactions-count');
+    animateCount(vc, stats.totalViews    || 0);
+    animateCount(rc, stats.totalReactions || 0);
+    const heroText = document.getElementById('hero-reach-text');
+    heroText.textContent = `${(stats.totalViews || 0).toLocaleString()} people reached`;
+
+    updateReactionCounts();
+    initReactions();
+
+    // Track view (once per session)
+    trackView();
+
+    // Hide loading
+    setTimeout(() => document.getElementById('loading-screen').classList.add('hidden'), 700);
+  });
+  </script>
+</body>
+</html>
