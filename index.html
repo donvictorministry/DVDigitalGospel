@@ -630,8 +630,7 @@
   </style>
 </head>
 <body>
-
-  <!-- Loading Screen -->
+<!-- Loading Screen -->
   <div id="loading-screen">
     <div class="loading-logo">
       <span class="material-icons-round">auto_stories</span>
@@ -658,9 +657,6 @@
       <h1 id="bar-title">DVDigital Gospel Tract</h1>
       <p id="bar-sub">The Good News of Jesus Christ</p>
     </div>
-    <button class="icon-btn" id="btn-lang" title="Change Language" aria-label="Change Language">
-      <span class="material-icons-round">translate</span>
-    </button>
     <button class="icon-btn" id="btn-share" title="Share App" aria-label="Share this gospel">
       <span class="material-icons-round">share</span>
     </button>
@@ -709,11 +705,106 @@
     </div>
 
     <!-- Language Bar -->
-    <div id="language-bar">
-      <span class="material-icons-round">translate</span>
-      <div id="lang-chips"></div>
-    </div>
-
+ <div id="custom-translate-container" style="padding: 12px 16px; background: var(--md-sys-color-surface); text-align: center; border-bottom: 1px solid var(--md-sys-color-surface-container);">
+      <div style="font-size: 18px; font-weight: 800; color: var(--md-sys-color-primary); margin-bottom: 8px; font-family: 'Roboto', sans-serif;">
+        Select Your Preferred Language
+      </div>
+      <div id="google_translate_element" style="margin-bottom: 12px;"></div>
+      
+           <button onclick="document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain='+location.hostname; window.location.reload();" style="padding: 8px 18px; border-radius: 24px; border: 1.5px solid var(--md-sys-color-primary); background: transparent; color: var(--md-sys-color-primary); font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 0.2s;">
+             Back to English
+      </button>
+    </div>
+<style>
+      /* Force the Google dropdown to look like your Material Design app */
+      #google_translate_element select {
+        width: 100%;
+        max-width: 320px;
+        padding: 12px 16px;
+        font-size: 16px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 600;
+        border: 2px solid var(--md-sys-color-primary-container);
+        border-radius: var(--shape-lg);
+        background-color: var(--md-sys-color-surface-variant);
+        color: var(--md-sys-color-on-surface);
+        outline: none;
+        cursor: pointer;
+      }
+      
+      /* THE NUCLEAR OPTION: Nuke ALL Google Branding */
+      #google_translate_element img, 
+      #google_translate_element a, 
+      .goog-te-gadget-icon, 
+      .goog-logo-link { 
+        display: none !important; 
+        visibility: hidden !important; 
+      }
+      .goog-te-gadget { 
+        font-size: 0px !important; 
+        color: transparent !important; 
+      }
+      .goog-te-gadget-simple { 
+        background-color: transparent !important; 
+        border: none !important; 
+      }
+      
+      /* Kill Top Banners and Hover Popups */
+      .goog-te-banner-frame.skiptranslate, 
+      .goog-te-banner-frame { 
+        display: none !important; 
+      }
+      body { 
+        top: 0px !important; 
+        position: relative !important; 
+      }
+      #goog-gt-tt, 
+      .goog-te-balloon-frame { 
+        display: none !important; 
+      }
+      .goog-text-highlight { 
+        background-color: transparent !important; 
+        border: none !important; 
+        box-shadow: none !important; 
+      }
+    </style>
+    
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,ha,ig,yo,fr,ar,sw,pt,es,zh-CN,zh-TW,hi,de,ja,ko,uk,ru',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+ 
+ <script type="text/javascript">
+      // This script aggressively hunts for the Google logo and text every 500ms and nukes it
+      const nukeGoogleBranding = setInterval(function() {
+        const translateElement = document.querySelector('.goog-te-gadget');
+        if (translateElement) {
+          // Remove the "Powered by" text nodes
+          translateElement.childNodes.forEach(function(node) {
+            if (node.nodeType === 3) { // If it's pure text
+              node.nodeValue = '';
+            }
+          });
+          // Hide the actual logo images and links
+          const logo = document.querySelector('.goog-logo-link');
+          const images = translateElement.querySelectorAll('img');
+          if (logo) logo.style.display = 'none';
+          images.forEach(img => img.style.display = 'none');
+          
+          // If we successfully killed the logo, we can stop the hunter
+          if (logo || images.length > 0) {
+            clearInterval(nukeGoogleBranding);
+          }
+        }
+      }, 500);
+    </script>
+ 
     <!-- Articles -->
     <div id="articles-container">
       <div class="section-label">The Gospel Message</div>
@@ -950,55 +1041,35 @@ If you prayed that prayer sincerely, the Bible declares that you have been born 
   // ================================================================
   //  MANIFEST (Inline blob injection)
   // ================================================================
-  function injectManifest() {
-    const icon192 = generateAppIcon(192);
-    const icon512 = generateAppIcon(512);
-    const manifest = {
-      name: 'DVDigital Gospel Tract',
-      short_name: 'DV Gospel',
-      description: 'The Good News of Jesus Christ',
-      start_url: './',
-      display: 'standalone',
-      orientation: 'portrait',
-      background_color: '#FFFBFE',
-      theme_color: '#5C4EAB',
-      icons: [
-        { src: icon192, sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
-        { src: icon512, sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
-      ],
-      categories: ['education', 'lifestyle'],
-      lang: 'en'
-    };
-    const blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
-    const url  = URL.createObjectURL(blob);
-    const link = document.createElement('link');
-    link.rel   = 'manifest';
-    link.href  = url;
-    document.head.appendChild(link);
-  }
-
-  function generateAppIcon(size) {
-    const c   = document.createElement('canvas');
-    c.width   = size; c.height = size;
-    const ctx = c.getContext('2d');
-    const r   = size * 0.22;
-    // Purple background with rounded corners
-    ctx.fillStyle = '#5C4EAB';
-    ctx.beginPath();
-    ctx.moveTo(r, 0); ctx.lineTo(size - r, 0);
-    ctx.quadraticCurveTo(size, 0, size, r);
-    ctx.lineTo(size, size - r); ctx.quadraticCurveTo(size, size, size - r, size);
-    ctx.lineTo(r, size); ctx.quadraticCurveTo(0, size, 0, size - r);
-    ctx.lineTo(0, r); ctx.quadraticCurveTo(0, 0, r, 0);
-    ctx.closePath(); ctx.fill();
-    // White cross
-    const cx = size / 2, cy = size / 2;
-    const cw = size * 0.10, ch = size * 0.50;
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(cx - cw / 2, cy - ch / 2, cw, ch);
-    ctx.fillRect(cx - ch * 0.42, cy - cw / 2, ch * 0.84, cw);
-    return c.toDataURL('image/png');
-  }
+function injectManifest() {
+  // REPLACE THESE URLS WITH YOUR OWN HOSTED IMAGES
+  const icon192 = 'https://i.ibb.co/Q7pfxx2t/Screenshot-20260315-182330.png';  // ← CHANGE THIS
+  const icon512 = 'https://i.ibb.co/Q7pfxx2t/Screenshot-20260315-182330.png';  // ← CHANGE THIS
+  
+  const manifest = {
+    name: 'DVDigital Gospel Tract',
+    short_name: 'DV Gospel',
+    description: 'The Good News of Jesus Christ',
+    start_url: './',
+    display: 'standalone',
+    orientation: 'portrait',
+    background_color: '#FFFBFE',
+    theme_color: '#5C4EAB',
+    icons: [
+      { src: icon192, sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+      { src: icon512, sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
+    ],
+    categories: ['education', 'lifestyle'],
+    lang: 'en'
+  };
+  
+  const blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+  const url  = URL.createObjectURL(blob);
+  const link = document.createElement('link');
+  link.rel   = 'manifest';
+  link.href  = url;
+  document.head.appendChild(link);
+}
 
   // ================================================================
   //  SERVICE WORKER (Inline blob registration)
@@ -1134,41 +1205,42 @@ If you prayed that prayer sincerely, the Bible declares that you have been born 
   }
 
   // ================================================================
-  //  LANGUAGE BAR
-  // ================================================================
-  function buildLanguageBar(articles) {
-    const langs = [...new Set(articles.map(a => a.language || 'en'))];
-    State.allLangs = langs;
-    const chips = document.getElementById('lang-chips');
-    chips.innerHTML = '';
-    langs.forEach(lang => {
-      const chip = document.createElement('button');
-      chip.className = 'lang-chip' + (lang === State.currentLang ? ' active' : '');
-      chip.textContent = LANGUAGE_NAMES[lang] || lang.toUpperCase();
-      chip.addEventListener('click', () => switchLanguage(lang, articles));
-      chips.appendChild(chip);
-    });
+//  LANGUAGE BAR
+// ================================================================
+function buildLanguageBar(articles) {
+  // HARDCODE ALL LANGUAGES HERE - IGNORE articles data
+  const langs = ['en', 'ha', 'ig', 'yo', 'pcm', 'ff', 'ibb', 'tiv', 'ija', 'kan', 'urh', 'fr', 'ar', 'sw', 'pt', 'es', 'zh', 'hi', 'de'];
+  
+  const languageDisplayNames = {
+    en: 'English', ha: 'Hausa', ig: 'Igbo', yo: 'Yorùbá', pcm: 'Pidgin',
+    ff: 'Fulfulde', ibb: 'Ibibio', tiv: 'Tiv', ija: 'Ijaw', kan: 'Kanuri',
+    urh: 'Urhobo', fr: 'Français', ar: 'العربية', sw: 'Kiswahili',
+    pt: 'Português', es: 'Español', zh: '中文', hi: 'हिन्दी', de: 'Deutsch'
+  };
+  
+  State.allLangs = langs;
+  const chips = document.getElementById('lang-chips');
+  chips.innerHTML = '';
+  
+  langs.forEach(lang => {
+    const chip = document.createElement('button');
+    chip.className = 'lang-chip' + (lang === State.currentLang ? ' active' : '');
+    chip.textContent = languageDisplayNames[lang] || lang.toUpperCase();
+    chip.addEventListener('click', () => switchLanguage(lang, articles));
+    chips.appendChild(chip);
+  });
 
-    // Modal list
-    const modalList = document.getElementById('lang-modal-list');
-    modalList.innerHTML = '';
-    langs.forEach(lang => {
-      const btn = document.createElement('button');
-      btn.style.cssText = 'display:flex;align-items:center;gap:16px;width:100%;padding:14px 0;border:none;background:none;cursor:pointer;font-family:Roboto,sans-serif;font-size:16px;color:var(--md-sys-color-on-surface);border-bottom:1px solid var(--md-sys-color-surface-container);';
-      btn.innerHTML = `<span class="material-icons-round" style="color:var(--md-sys-color-primary);">translate</span>${LANGUAGE_NAMES[lang] || lang.toUpperCase()}`;
-      btn.addEventListener('click', () => { switchLanguage(lang, articles); closeLangModal(); });
-      modalList.appendChild(btn);
-    });
-  }
-
-  function switchLanguage(lang, articles) {
-    State.currentLang = lang;
-    document.getElementById('lang-chips').querySelectorAll('.lang-chip').forEach(c => {
-      c.classList.toggle('active', c.textContent === (LANGUAGE_NAMES[lang] || lang.toUpperCase()));
-    });
-    const filtered = articles.filter(a => (a.language || 'en') === lang);
-    renderArticles(filtered.length ? filtered : articles.filter(a => (a.language || 'en') === 'en'));
-  }
+  // Modal list
+  const modalList = document.getElementById('lang-modal-list');
+  modalList.innerHTML = '';
+  langs.forEach(lang => {
+    const btn = document.createElement('button');
+    btn.style.cssText = 'display:flex;align-items:center;gap:16px;width:100%;padding:14px 0;border:none;background:none;cursor:pointer;font-family:Roboto,sans-serif;font-size:16px;color:var(--md-sys-color-on-surface);border-bottom:1px solid var(--md-sys-color-surface-container);';
+    btn.innerHTML = `<span class="material-icons-round" style="color:var(--md-sys-color-primary);">translate</span>${languageDisplayNames[lang] || lang.toUpperCase()}`;
+    btn.addEventListener('click', () => { switchLanguage(lang, articles); closeLangModal(); });
+    modalList.appendChild(btn);
+  });
+}
 
   // ================================================================
   //  TRACK VIEW
@@ -1349,9 +1421,7 @@ If you prayed that prayer sincerely, the Bible declares that you have been born 
     // Wire share buttons
     document.getElementById('btn-share').addEventListener('click', handleShare);
     document.getElementById('btn-share-hero').addEventListener('click', handleShare);
-    document.getElementById('btn-lang').addEventListener('click', openLangModal);
-    document.getElementById('lang-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeLangModal(); });
-
+    
     // Load ripple on CTA buttons
     document.querySelectorAll('.cta-btn').forEach(addRipple);
 
@@ -1388,10 +1458,7 @@ If you prayed that prayer sincerely, the Bible declares that you have been born 
     if (settings.footerText)    document.getElementById('footer-text').textContent   = settings.footerText;
 
     updateCTAButtons(settings);
-
     // Render language bar
-    buildLanguageBar(articles);
-
     // Render articles for browser language
     const langArticles = articles.filter(a => (a.language || 'en') === State.currentLang);
     renderArticles(langArticles.length ? langArticles : articles.filter(a => (a.language || 'en') === 'en'));
