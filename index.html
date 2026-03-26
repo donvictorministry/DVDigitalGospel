@@ -615,6 +615,34 @@
     @media print {
       #top-app-bar, #reaction-bar, #cta-section, #install-banner { display: none !important; }
     }
+    
+     .show-more-btn {
+  background: var(--md-sys-color-primary);
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 28px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  display: inline-block;
+  margin: 16px 0 8px 0;
+  box-shadow: 0 6px 12px rgba(92,78,171,0.3);
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.show-more-btn:hover {
+  background: #7C4DFF;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(92,78,171,0.4);
+}
+
+.show-more-btn:active {
+  transform: scale(0.95);
+}
   </style>
 </head>
 <body>
@@ -1143,53 +1171,79 @@ function injectManifest() {
   // ================================================================
   //  RENDER ARTICLES
   // ================================================================
-  function renderArticles(articles) {
-    const container = document.getElementById('articles-list');
-    container.innerHTML = '';
+    // 
+function renderArticles(articles) {
+  const container = document.getElementById('articles-list');
+  container.innerHTML = '';
 
-    if (!articles || articles.length === 0) {
-      container.innerHTML = `
-        <div style="text-align:center;padding:48px 24px;color:var(--md-sys-color-on-surface-variant);">
-          <span class="material-icons-round" style="font-size:64px;opacity:0.3;display:block;margin-bottom:16px;">article</span>
-          <p>No gospel articles found for this language.<br>Showing content in English.</p>
-        </div>`;
-      return;
+  if (!articles || articles.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:48px 24px;color:var(--md-sys-color-on-surface-variant);">
+        <span class="material-icons-round" style="font-size:64px;opacity:0.3;display:block;margin-bottom:16px;">article</span>
+        <p>No gospel articles found for this language.<br>Showing content in English.</p>
+      </div>`;
+    return;
+  }
+
+  articles.forEach((article, idx) => {
+    const card = document.createElement('div');
+    card.className = 'article-card';
+
+    // Split content into paragraphs
+    const paragraphs = (article.content || '')
+      .split(/\n\n+/)
+      .filter(p => p.trim());
+
+    let contentHtml = '';
+    
+    if (paragraphs.length > 1) {
+      // First paragraph visible, rest hidden
+      const firstPara = `<p>${paragraphs[0].trim()}</p>`;
+      const restParas = paragraphs.slice(1).map(p => `<p>${p.trim()}</p>`).join('');
+      contentHtml = firstPara +
+        `<div class="article-collapse" style="display:none;">${restParas}</div>` +
+        `<button class="show-more-btn">Show more</button>`;
+    } else {
+      // Only one paragraph - show all
+      contentHtml = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
     }
 
-    articles.forEach((article, idx) => {
-      const card = document.createElement('div');
-      card.className = 'article-card';
+    card.innerHTML = `
+      <div class="article-header">
+        <div class="article-num">${idx + 1}</div>
+        <h3>${article.title || ''}</h3>
+        ${article.subtitle ? `<div class="article-subtitle-text">${article.subtitle}</div>` : ''}
+      </div>
+      <div class="article-body">
+        <div class="article-content">${contentHtml}</div>
+      </div>
+      ${article.scripture ? `
+        <div class="scripture-card">
+          <div class="scripture-header">
+            <span class="material-icons-round">menu_book</span>
+            <span>Scripture</span>
+          </div>
+          <div class="scripture-verse">${article.scripture}</div>
+          <div class="scripture-ref">${article.scriptureRef || ''}</div>
+        </div>` : ''}
+    `;
 
-      const paragraphs = (article.content || '')
-        .split(/\n\n+/)
-        .filter(p => p.trim())
-        .map(p => `<p>${p.trim()}</p>`)
-        .join('');
-
-      card.innerHTML = `
-        <div class="article-header">
-          <div class="article-num">${idx + 1}</div>
-          <h3>${article.title || ''}</h3>
-          ${article.subtitle ? `<div class="article-subtitle-text">${article.subtitle}</div>` : ''}
-        </div>
-        <div class="article-body">
-          <div class="article-content">${paragraphs}</div>
-        </div>
-        ${article.scripture ? `
-          <div class="scripture-card">
-            <div class="scripture-header">
-              <span class="material-icons-round">menu_book</span>
-              <span>Scripture</span>
-            </div>
-            <div class="scripture-verse">${article.scripture}</div>
-            <div class="scripture-ref">${article.scriptureRef || ''}</div>
-          </div>` : ''}
-      `;
-
-      container.appendChild(card);
-      addRipple(card);
-    });
-  }
+    container.appendChild(card);
+    
+    // Add click handler for show more button
+    const btn = card.querySelector('.show-more-btn');
+    if (btn) {
+      const collapseDiv = card.querySelector('.article-collapse');
+      btn.addEventListener('click', () => {
+        const isHidden = collapseDiv.style.display === 'none';
+        collapseDiv.style.display = isHidden ? 'block' : 'none';
+        btn.textContent = isHidden ? 'Show less' : 'Show more';
+      });
+    }
+    
+    addRipple(card);
+  });
+}
 
   // ================================================================
 //  LANGUAGE BAR
